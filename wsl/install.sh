@@ -34,6 +34,9 @@ sudo apt install -y powershell
 # pipx
 # pipenv
 
+# Install neovim 
+# -------------------------
+sudo apt install -y neovim
 
 # Install podman for wsl on Ubuntu 20.04
 # -------------------------
