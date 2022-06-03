@@ -45,6 +45,10 @@ sudo apt -qq -y install podman
 sudo cp /usr/share/containers/containers.conf /etc/containers/
 echo "Update configuration in /etc/containers/containers.conf after installation"
 
+# Install starship 
+# -------------------------
+sudo curl -sS htps://starship.rs/install.sh | sh
+
 # Upgrade packages versions
 # -------------------------
 sudo apt upgrade -y
