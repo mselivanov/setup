@@ -39,7 +39,7 @@ sudo apt -qq -y install podman
 
 # Install starship 
 # -------------------------
-sudo curl -sS https://starship.rs/install.sh | sh
+sudo curl -sS https://starship.rs/install.sh | sh -s -- --yes
 eval "$(starship init bash)"
 
 # Upgrade packages versions
