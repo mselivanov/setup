@@ -1,6 +1,6 @@
 7zip
 git
-vim
+nvim
 firefox
 googlechrome
 hourglass.install
@@ -9,12 +9,10 @@ obsidian
 spotify
 citrix-workspace 
 keepass
-adobereader
 dbeaver
 freeplane
 calibre
 screenpresso
 paint.net
-jq
 vscode
-azure-data-studio
+vagrant
