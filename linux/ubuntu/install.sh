@@ -5,15 +5,7 @@
 # Update the list of packages
 sudo apt update && sudo apt upgrade -y
 
-sudo apt install -y \
-    make \
-    build-essential \
-    wget \
-    curl \ 
-    git \
-    stow \
-    neovim \
-    podman
+sudo apt install -y make build-essential wget curl git stow neovim podman
 
 # sudo apt install libssl-dev zlib1g-dev \
 # libbz2-dev libreadline-dev libsqlite3-dev \
