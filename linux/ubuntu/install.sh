@@ -30,16 +30,6 @@ sudo apt install -y make build-essential wget curl git stow neovim podman
 # sudo cp /usr/share/containers/containers.conf /etc/containers/
 # echo "Update configuration in /etc/containers/containers.conf after installation"
 
-# Install starship 
-# -------------------------
-sudo curl -sS https://starship.rs/install.sh | sh -s -- --yes
-eval "$(starship init bash)"
-
-# Install bash_it 
-# -------------------------
-git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
-~/.bash_it/install.sh
-
 # Upgrade packages versions
 # -------------------------
 sudo apt upgrade -y
