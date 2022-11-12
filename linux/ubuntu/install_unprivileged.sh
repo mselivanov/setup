@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 export SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+source "${SCRIPT_DIR}/../common.sh"
+
 
 # TODO
 # Install python tools
@@ -16,16 +18,16 @@ eval "$(starship init bash)"
 
 # Install bash_it 
 # -------------------------
-if [[ -d "${HOME}/.bash_it" ]]
-then
-    rm -rf ~/.bash_it
-fi
+rmdir ~/.bash_it
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 # -s - silent installation
 # -n - do not modify config
 # -f - overwrite existing backup
 ~/.bash_it/install.sh -s -n -f
 
+# Install nodejs 
+# -------------------------
+"${SCRIPT_DIR}/nodejs/install.sh"
 
 # Install additional components for vim/neovim 
 # -------------------------
