@@ -3,7 +3,7 @@
 set -o nounset    # error when referencing undefined variable
 set -o errexit    # exit when command fails
 
-export SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 source "${SCRIPT_DIR}/../common.sh"
 
 
