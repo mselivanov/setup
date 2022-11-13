@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -o nounset    # error when referencing undefined variable
 set -o errexit    # exit when command fails
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -31,10 +30,6 @@ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 # Install nodejs 
 # -------------------------
 "${SCRIPT_DIR}/nodejs/install.sh"
-
-# Install nodejs packages
-# -------------------------
-"${SCRIPT_DIR}/yarn/install.sh"
 
 # Install additional components for vim/neovim 
 # -------------------------
