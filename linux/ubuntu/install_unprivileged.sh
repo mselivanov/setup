@@ -18,16 +18,20 @@ eval "$(starship init bash)"
 
 # Install bash_it 
 # -------------------------
-rmdir ~/.bash_it
+rmdir "${HOME}/.bash_it"
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 # -s - silent installation
 # -n - do not modify config
 # -f - overwrite existing backup
-~/.bash_it/install.sh -s -n -f
+"${HOME}/.bash_it/install.sh" -s -n -f
 
 # Install nodejs 
 # -------------------------
 "${SCRIPT_DIR}/nodejs/install.sh"
+
+# Install nodejs packages
+# -------------------------
+"${SCRIPT_DIR}/yarn/install.sh"
 
 # Install additional components for vim/neovim 
 # -------------------------

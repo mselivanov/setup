@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
+export SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+source "${SCRIPT_DIR}/../../common.sh"
+VIM_AUTOLOAD_DIR="${HOME}/.vim/autoload"
+
 # Install neovim additional stuff 
 # ----------------------------------------------------------
-if [[ -d "${HOME}/.vim/bundle/Vundle.vim" ]]
-then
-    rm -rf ~/.vim/bundle/Vundle.vim
-fi
-
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
