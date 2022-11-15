@@ -6,5 +6,3 @@ VIM_AUTOLOAD_DIR="${HOME}/.vim/autoload"
 
 # Install neovim additional stuff 
 # ----------------------------------------------------------
-curl -fLo "${VIM_AUTOLOAD_DIR}/plug.vim" --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
