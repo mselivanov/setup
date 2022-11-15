@@ -30,9 +30,9 @@ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 # -------------------------
 "${SCRIPT_DIR}/nodejs/install.sh"
 
-# Install additional components for vim/neovim 
+# Install additional components for neovim 
 # -------------------------
-"${SCRIPT_DIR}/vim/install.sh"
+"${SCRIPT_DIR}/nvim/install.sh"
 
 # Install pyenv 
 # -------------------------
