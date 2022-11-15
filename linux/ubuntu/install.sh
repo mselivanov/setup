@@ -8,7 +8,8 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y make build-essential \
                     wget curl git stow \
                     podman software-properties-common \
-                    silversearcher-ag
+                    silversearcher-ag fzf \
+                    bat
 sudo add-apt-repository ppa:neovim-ppa/stable -y
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
