@@ -9,7 +9,6 @@ source "${SCRIPT_DIR}/../common.sh"
 # TODO
 # Install python tools
 # -------------------------
-# pyenv
 # pipx
 # pipenv
 
@@ -34,6 +33,10 @@ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 # Install additional components for vim/neovim 
 # -------------------------
 "${SCRIPT_DIR}/vim/install.sh"
+
+# Install pyenv 
+# -------------------------
+"${SCRIPT_DIR}/pyenv/install.sh"
 
 # Cleanup 
 # -------------------------
