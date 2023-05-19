@@ -9,7 +9,7 @@ sudo apt install -y make build-essential \
                     wget curl git stow \
                     podman software-properties-common \
                     silversearcher-ag fzf \
-                    bat
+                    batcat fdfind ripgrep xsel
 sudo add-apt-repository ppa:neovim-ppa/stable -y
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
