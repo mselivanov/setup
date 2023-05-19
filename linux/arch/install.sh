@@ -1,17 +1,25 @@
 #!/usr/bin/env bash
 
-# Install generic development dependencies 
+# Install generic development dependencies
 # ----------------------------------------------------------
-# Update the list of packages
-sudo pacman -Syuu
+# Update system
+sudo pacman -Syuu --noconfirm
 
-sudo pacman -Sy --noconfirm base-devel make wget curl \
- git stow \
- podman fzf \
- bat fd ripgrep
+sudo pacman -Sy --noconfirm
+base-devel \
+	make \
+	wget \
+	curl \
+	git \
+	stow \
+	podman \
+	fzf \
+	bat \
+	fd \
+	ripgrep \
+	neovim
 
-sudo pacman -Sy neovim
-sudo pacman -Syuu
+sudo pacman -Syuu --noconfirm
 
-# Cleanup 
+# Cleanup
 # -------------------------
