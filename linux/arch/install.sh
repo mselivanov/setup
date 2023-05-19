@@ -5,8 +5,8 @@
 # Update system
 sudo pacman -Syuu --noconfirm
 
-sudo pacman -Sy --noconfirm
-base-devel \
+sudo pacman -Sy --noconfirm \
+	base-devel \
 	make \
 	wget \
 	curl \
