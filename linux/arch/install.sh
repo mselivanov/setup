@@ -3,9 +3,9 @@
 # Install generic development dependencies
 # ----------------------------------------------------------
 # Update system
-sudo pacman -Syuu --noconfirm
+pacman -Syuu --noconfirm
 
-sudo pacman -Sy --noconfirm \
+pacman -Sy --noconfirm \
 	base-devel \
 	make \
 	wget \
@@ -17,9 +17,10 @@ sudo pacman -Sy --noconfirm \
 	bat \
 	fd \
 	ripgrep \
+	unzip \
 	neovim
 
-sudo pacman -Syuu --noconfirm
+pacman -Syuu --noconfirm
 
 # Cleanup
 # -------------------------
