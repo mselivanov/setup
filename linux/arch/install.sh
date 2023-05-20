@@ -18,8 +18,14 @@ pacman -Sy --noconfirm \
 	fd \
 	ripgrep \
 	unzip \
-	neovim
+	neovim \
+	fontconfig
 
+# Install fonts
+pacman -Sy ttf-jetbrains-mono-nerd
+fc-cache -vf
+
+# Update system
 pacman -Syuu --noconfirm
 
 # Cleanup
