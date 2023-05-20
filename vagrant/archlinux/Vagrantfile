@@ -80,6 +80,8 @@ Vagrant.configure("2") do |config|
    /tmp/setup/linux/arch/install_unprivileged.sh
    cd ~ && git clone https://github.com/mselivanov/dotfiles.git ./.dotfiles
    cd .dotfiles && chmod +x ./install.sh && ./install.sh
+   source ~/.bashrc
+   pyenv install 3.11
   SHELL
 
   $cleanup_script = <<-SHELL

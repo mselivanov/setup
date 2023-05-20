@@ -29,9 +29,5 @@ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 # -------------------------
 "${SCRIPT_DIR}/pyenv/install.sh"
 
-# Install python
-# -------------------------
-pyenv install 3.11
-
 # Cleanup
 # -------------------------
