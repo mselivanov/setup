@@ -19,7 +19,8 @@ pacman -Sy --noconfirm \
 	ripgrep \
 	unzip \
 	neovim \
-	fontconfig
+	fontconfig \
+	tmux
 
 # Install fonts
 pacman -Sy ttf-jetbrains-mono-nerd
