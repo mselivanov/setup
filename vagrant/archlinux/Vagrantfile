@@ -67,21 +67,25 @@ Vagrant.configure("2") do |config|
     pacman -Syuu
     pacman -Sy --noconfirm git
     git clone https://github.com/mselivanov/setup.git /tmp/setup
-    su vagrant && sudo /tmp/setup/linux/arch/install.sh
+    chmod +x /tmp/setup/linux/arch/configure.sh
+    /tmp/setup/linux/arch/configure.sh
+    su vagrant 
+    sudo chmod +x /tmp/setup/linux/arch/install.sh
+    sudo /tmp/setup/linux/arch/install.sh
   SHELL
 
-  #$unprivileged_script = <<-SHELL
-  #  mv ~/.bashrc ~/.bashrc.bck
-  #  /tmp/setup/linux/ubuntu/install_unprivileged.sh
-  #  cd ~ && git clone https://github.com/mselivanov/dotfiles.git ./.dotfiles
-  #  cd .dotfiles && ./install.sh
-  #SHELL
+  $unprivileged_script = <<-SHELL
+   mv ~/.bashrc ~/.bashrc.bck
+   /tmp/setup/linux/arch/install_unprivileged.sh
+   cd ~ && git clone https://github.com/mselivanov/dotfiles.git ./.dotfiles
+   cd .dotfiles && chmod +x ./install.sh && ./install.sh
+  SHELL
 
   $cleanup_script = <<-SHELL
     rm -rf /tmp/setup
   SHELL
 
   config.vm.provision "shell", inline: $privileged_script
-  #config.vm.provision "shell", inline: $unprivileged_script, privileged: false
+  config.vm.provision "shell", inline: $unprivileged_script, privileged: false
   config.vm.provision "shell", inline: $cleanup_script 
 end
