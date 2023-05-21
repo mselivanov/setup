@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
     pacman -Syuu
     pacman -Sy --noconfirm git
     git clone https://github.com/mselivanov/setup.git /tmp/setup
-    find /tmp/setup -type f -name '*.sh' -exec chmod +x {} \;
+    find /tmp/setup -type f -name '*.sh' -exec chmod +x {} \\;
     /tmp/setup/linux/arch/configure.sh
     /tmp/setup/linux/arch/install.sh
   SHELL
@@ -76,7 +76,7 @@ Vagrant.configure("2") do |config|
    mv ~/.bashrc ~/.bashrc.bck
    /tmp/setup/linux/arch/install_unprivileged.sh
    cd ~ && git clone https://github.com/mselivanov/dotfiles.git ./.dotfiles
-   sudo find $HOME/.dotfiles -type f -name '*.sh' -exec chmod +x {} \;
+   sudo find $HOME/.dotfiles -type f -name '*.sh' -exec chmod +x {} \\;
    cd .dotfiles && ./install.sh
    /tmp/setup/linux/arch/python/install.sh
   SHELL
