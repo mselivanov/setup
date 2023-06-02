@@ -21,7 +21,8 @@ pacman -Sy --noconfirm \
 	neovim \
 	fontconfig \
 	tmux \
-	nodejs
+	nodejs \
+  npm
 
 # Install fonts
 pacman -Sy ttf-jetbrains-mono-nerd
