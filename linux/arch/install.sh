@@ -22,7 +22,8 @@ pacman -Sy --noconfirm \
 	fontconfig \
 	tmux \
 	nodejs \
-  npm
+	npm \
+	ntp
 
 # Install fonts
 pacman -Sy ttf-jetbrains-mono-nerd
