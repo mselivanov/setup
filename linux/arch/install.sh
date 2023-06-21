@@ -23,7 +23,8 @@ pacman -Sy --noconfirm \
 	tmux \
 	nodejs \
 	npm \
-	ntp
+	ntp \
+	zoxide
 
 # Install fonts
 pacman -Sy ttf-jetbrains-mono-nerd
