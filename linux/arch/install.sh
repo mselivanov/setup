@@ -24,7 +24,8 @@ pacman -Sy --noconfirm \
 	nodejs \
 	npm \
 	ntp \
-	zoxide
+	zoxide \
+  yarn
 
 # Install fonts
 pacman -Sy ttf-jetbrains-mono-nerd
