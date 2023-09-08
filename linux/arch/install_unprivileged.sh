@@ -29,5 +29,9 @@ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 # -------------------------
 "${SCRIPT_DIR}/pyenv/install.sh"
 
+# Install tmux plugin manager
+# -------------------------
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # Cleanup
 # -------------------------
