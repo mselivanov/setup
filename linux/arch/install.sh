@@ -25,7 +25,9 @@ pacman -Sy --noconfirm \
 	npm \
 	ntp \
 	zoxide \
-  yarn
+	yarn \
+	dotnet-runtime \
+	dotnet-sdk
 
 # Install fonts
 pacman -Sy ttf-jetbrains-mono-nerd
