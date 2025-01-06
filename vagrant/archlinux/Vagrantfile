@@ -1,86 +1,125 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
-Vagrant.configure("2") do |config|
-  # The most common configuration options are documented and commented below.
-  # For a complete reference, please see the online documentation at
-  # https://docs.vagrantup.com.
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
 
-  # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "generic/arch"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # All Vagrant configuration is done here. The most common configuration
+  # options are documented and commented below. For a complete reference,
+  # please see the online documentation at vagrantup.com.
 
-  # Disable automatic box update checking. If you disable this, then
-  # boxes will only be checked for updates when the user runs
-  # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "terrywang/archlinux"
+  
+  # Set hostname
+  config.vm.hostname = "dev.vagrant.vm"
+  config.vm.disk :disk, size: "50GB", primary: true
+
+  # vagrant-proxyconf
+  config.proxy.http     = "http://proxy-rwest-de.energy.local:8081/"
+  config.proxy.https    = "http://proxy-rwest-de.energy.local:8081/"
+  
+
+  # Use vagrant-omnibus to install chef client
+  # config.omnibus.chef_version = :latest
+
+  # Enable Berkshelf via vagrant-berkshelf
+  # config.berkshelf.enabled = true
+  
+  # vagrant-berkshelf plugin assumes that the Vagrantfile is located in the same directory as a Berksfile
+  # Override this behavior if your Berksfile is located in another directory
+  # config.berkshelf.berksfile_path = "/path/to/Berksfile"
+
+  # Disable vagrant-vbguest to update VirtualBox Guest Additions
+  config.vbguest.auto_update = false
+
+  # The url from where the 'config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system.
+  # config.vm.box_url = "http://domain.com/path/to/above.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # NOTE: This will enable public access to the opened port
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
-
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine and only allow access
-  # via 127.0.0.1 to disable public access
-  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+  # config.vm.network :forwarded_port, guest: 80, host: 8080
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "private_network", ip: "192.168.33.11"
+  # config.vm.network :private_network, ip: "192.168.33.10"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  # config.vm.network "public_network"
+  
+  # Second network interface for bridged mode
+  config.vm.network :public_network
+
+  # If true, then any SSH connections made will enable agent forwarding.
+  # Default value: false
+  # config.ssh.forward_agent = true
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.provider "hyperv"
+  # config.vm.synced_folder ".", "/vagrant", disabled: true
+  # NFS synced folder nfs_version option defaults to 3
+  # config.vm.synced_folder ".", "/vagrant", type: "nfs"
+  # rsync synced folder
+  # config.vm.synced_folder ".", "/vagrant", type: "rsync", rsync__exclude: ".git/"
+
+  vagrant_data = File.expand_path("../vagrant_data", __FILE__)
+  Dir::mkdir(vagrant_data) unless FileTest::directory?(vagrant_data)
+  config.vm.synced_folder "vagrant_data", "/vagrant_data"
+
+  # Install Chef Client as a gem
+  # config.vm.provision :shell, :inline => "gem install chef --no-rdoc --no-ri --conservative"
+
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
-  #
-  # View the documentation for the provider you are using for more
-  # information on available options.
-
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
-  # documentation for more information about their specific syntax and use.
+  config.vm.provider :virtualbox do |vb|
+	vb.name = "devbox"
+	
+    # Use VBoxManage to customize the VM. For example to change memory:
+    vb.customize ["modifyvm", :id, "--memory", "16384"]
+    vb.customize ["modifyvm", :id, "--cpus", 2]
+	vb.customize ["modifyvm", :id, "--cpus", 2]
+  end
+  
   $privileged_script = <<-SHELL
-    pacman -Syuu
-    pacman -Sy --noconfirm git
-    git clone https://github.com/mselivanov/setup.git /tmp/setup
-    find /tmp/setup -type f -name '*.sh' -exec chmod +x {} \\;
-    /tmp/setup/linux/arch/configure.sh
-    /tmp/setup/linux/arch/install.sh
+   pacman -Sy --needed archlinux-keyring && pacman -Su
+   pacman -Sy --noconfirm git
+   git clone https://github.com/mselivanov/setup.git /tmp/setup
+   find /tmp/setup -type f -name '*.sh' -exec chmod +x {} \\;
+   /tmp/setup/linux/arch/configure.sh
+   /tmp/setup/linux/arch/install.sh
   SHELL
-
+  
   $unprivileged_script = <<-SHELL
-   mv ~/.bashrc ~/.bashrc.bck
-   /tmp/setup/linux/arch/install_unprivileged.sh
-   cd ~ && git clone https://github.com/mselivanov/dotfiles.git ./.dotfiles
+   sudo chmod 644 /etc/gitconfig
+   git clone https://github.com/mselivanov/setup.git ~/tmp/setup
+   sudo find $HOME/tmp/setup -type f -name '*.sh' -exec chmod +x {} \\;
+
+   if [[ -f ~/.bashrc ]]; then
+     mv ~/.bashrc ~/.bashrc.bck
+   fi
+
+   if [[ -f ~/.tmux.conf ]]; then
+     mv ~/.tmux.conf ~/.tmux.conf.bak
+   fi
+
+   ~/tmp/setup/linux/arch/install_unprivileged.sh
+   cd ~
+   rm -rf ./.dotfiles
+   git clone https://github.com/mselivanov/dotfiles.git ./.dotfiles
    sudo find $HOME/.dotfiles -type f -name '*.sh' -exec chmod +x {} \\;
    cd .dotfiles && ./install.sh
-   /tmp/setup/linux/arch/python/install.sh
   SHELL
 
+  
   $cleanup_script = <<-SHELL
     rm -rf /tmp/setup
   SHELL
@@ -88,5 +127,5 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: $cleanup_script 
   config.vm.provision "shell", inline: $privileged_script
   config.vm.provision "shell", inline: $unprivileged_script, privileged: false
-  config.vm.provision "shell", inline: $cleanup_script 
+
 end

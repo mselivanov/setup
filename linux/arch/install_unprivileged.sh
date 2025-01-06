@@ -5,12 +5,6 @@ set -o errexit # exit when command fails
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 source "${SCRIPT_DIR}/../common.sh"
 
-# TODO
-# Install python tools
-# -------------------------
-# pipx
-# pipenv
-
 # Install starship
 # -------------------------
 sudo curl -sS https://starship.rs/install.sh | sh -s -- --yes
@@ -25,13 +19,15 @@ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 # -f - overwrite existing backup
 "${HOME}/.bash_it/install.sh" -s -n -f
 
-# Install pyenv
-# -------------------------
-"${SCRIPT_DIR}/pyenv/install.sh"
-
 # Install tmux plugin manager
 # -------------------------
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+for d in "${SCRIPT_DIR}/*" ; do
+  if [[ -f "${SCRIPT_DIR}/${d}/install.sh" ]]; then
+    "${SCRIPT_DIR}/${d}/install.sh"
+  fi
+done
 
 # Cleanup
 # -------------------------

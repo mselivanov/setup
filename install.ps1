@@ -26,3 +26,8 @@ foreach ($software_pck in $software_arr)
 {
     choco install "$software_pck" --yes
 }
+
+if (Check-Command -cmdname 'vagrant') {
+    vagrant plugin install vagrant-proxyconf
+    vagrant plugin install vagrant-vbguest
+}

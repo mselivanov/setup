@@ -3,7 +3,7 @@
 # Install generic development dependencies
 # ----------------------------------------------------------
 # Update system
-pacman -Syuu --noconfirm
+pacman -Sy --needed archlinux-keyring && pacman -Su
 
 pacman -Sy --noconfirm \
 	base-devel \
@@ -34,7 +34,7 @@ pacman -Sy ttf-jetbrains-mono-nerd
 fc-cache -vf
 
 # Update system
-pacman -Syuu --noconfirm
+pacman -Syu --noconfirm
 
 # Cleanup
 # -------------------------
