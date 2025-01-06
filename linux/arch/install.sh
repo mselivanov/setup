@@ -3,7 +3,7 @@
 # Install generic development dependencies
 # ----------------------------------------------------------
 # Update system
-pacman -Sy --needed archlinux-keyring && pacman -Su
+pacman -Sy --needed --noconfirm archlinux-keyring && pacman -Su --noconfirm
 
 pacman -Sy --noconfirm \
 	base-devel \
@@ -30,7 +30,7 @@ pacman -Sy --noconfirm \
 	dotnet-sdk
 
 # Install fonts
-pacman -Sy ttf-jetbrains-mono-nerd
+pacman -Sy --noconfirm ttf-jetbrains-mono-nerd
 fc-cache -vf
 
 # Update system
