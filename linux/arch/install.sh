@@ -27,7 +27,8 @@ pacman -Sy --noconfirm \
 	zoxide \
 	yarn \
 	dotnet-runtime \
-	dotnet-sdk
+	dotnet-sdk \
+	libxcrypt-compat
 
 # Install fonts
 pacman -Sy --noconfirm ttf-jetbrains-mono-nerd
