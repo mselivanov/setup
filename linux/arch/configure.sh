@@ -5,7 +5,7 @@
 #-----------------------------------------------
 #
 # Set local time zone
-sudo ln -sf /usr/share/zoneinfo/Europe/Vilnius /etc/localtime
+sudo ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 # Sync hw clock
 sudo hwclock --systohc
 # Set ntp
